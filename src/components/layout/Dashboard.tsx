@@ -60,7 +60,7 @@ export function Dashboard() {
 
           <section className="space-y-1.5">
             <SectionHeader title="Monthly Breakdown" />
-            <MonthlyTable output={output} name={activeScenario.name} />
+            <MonthlyTable output={output} name={activeScenario.name} fxRate={activeScenario.inputs.fxRate} />
           </section>
 
           <section className="space-y-1.5">
