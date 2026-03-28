@@ -66,10 +66,9 @@ export function SummaryCards({ output, fxRate, inputs }: { output: CompOutput; f
           formula={showFormulas ? `Annual ÷ 12 × ${output.months.length}mo = ${usd(Math.round(baseTotal / output.months.length))}/mo` : undefined} />
         <MiniStat label="Commission" usdVal={usd(commissionTotal)} cadVal={cad(Math.round(commissionTotal * fxRate))} accent
           formula={showFormulas ? `PT: ${compactUsd(inputs.passThroughPipeline)} × ${Math.round(inputs.passThroughRate * 100)}%\n${inputs.quarters.map((q, i) => {
-            const label = getQuarterLabel(inputs, i);
-            const base = q.pipeline * q.attainment * inputs.baseCommissionRate;
+            const qLabel = getQuarterLabel(inputs, i);
             const trueUp = q.attainment >= 1.0 ? q.pipeline * q.attainment * (inputs.acceleratedRate - inputs.baseCommissionRate) : 0;
-            return `${label}: ${compactUsd(q.pipeline)} × ${Math.round(q.attainment * 100)}% × ${Math.round(inputs.baseCommissionRate * 100)}%${trueUp > 0 ? ` + ${Math.round((inputs.acceleratedRate - inputs.baseCommissionRate) * 100)}% true-up` : ''}`;
+            return `${qLabel}: ${compactUsd(q.pipeline)} × ${Math.round(q.attainment * 100)}% × ${Math.round(inputs.baseCommissionRate * 100)}%${trueUp > 0 ? ` + ${Math.round((inputs.acceleratedRate - inputs.baseCommissionRate) * 100)}% true-up` : ''}`;
           }).join('\n')}` : undefined} />
         <MiniStat label="Net Take-Home" usdVal={usd(output.netTotalUSD)} cadVal={cad(output.netTotalCAD)} green
           formula={showFormulas ? `Gross − Taxes − Insurance` : undefined} />
