@@ -1,0 +1,185 @@
+@import "tailwindcss";
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-sans/600.css";
+@import "@fontsource/dm-sans/700.css";
+@import "@fontsource/space-mono/400.css";
+@import "@fontsource/space-mono/700.css";
+
+/* ── Raw color values: light (default) and dark ── */
+:root {
+  --raw-bg: #f9fafb;
+  --raw-surface: #ffffff;
+  --raw-surface2: #f3f4f6;
+  --raw-surface3: #e5e7eb;
+  --raw-border: #d1d5db;
+  --raw-border-subtle: #e5e7eb;
+  --raw-text: #111827;
+  --raw-text-secondary: #6b7280;
+  --raw-muted: #9ca3af;
+  --raw-green: #16a34a;
+  --raw-green-dim: #15803d;
+  --raw-red: #dc2626;
+  --raw-blue: #2563eb;
+  --raw-orange: #ea580c;
+  --raw-amber: #d97706;
+  --raw-indigo: #4f46e5;
+  --raw-q1: #2563eb;
+  --raw-q2: #16a34a;
+  --raw-q3: #d97706;
+  --raw-net: #16a34a;
+  --raw-cad: #ea580c;
+  --raw-usd: #2563eb;
+  --raw-gold: #d97706;
+  --raw-accent: #4f46e5;
+  --raw-sidebar-bg: #ffffff;
+  --raw-sidebar-border: #e5e7eb;
+}
+
+.dark {
+  --raw-bg: #0f0f12;
+  --raw-surface: #17171c;
+  --raw-surface2: #1e1e24;
+  --raw-surface3: #26262d;
+  --raw-border: #2a2a30;
+  --raw-border-subtle: #222228;
+  --raw-text: #ececef;
+  --raw-text-secondary: #a0a0a8;
+  --raw-muted: #6b6b74;
+  --raw-green: #22c55e;
+  --raw-green-dim: #16a34a;
+  --raw-red: #ef4444;
+  --raw-blue: #3b82f6;
+  --raw-orange: #f97316;
+  --raw-amber: #f59e0b;
+  --raw-indigo: #6366f1;
+  --raw-q1: #3b82f6;
+  --raw-q2: #22c55e;
+  --raw-q3: #f59e0b;
+  --raw-net: #22c55e;
+  --raw-cad: #f97316;
+  --raw-usd: #3b82f6;
+  --raw-gold: #f59e0b;
+  --raw-accent: #6366f1;
+  --raw-sidebar-bg: #141418;
+  --raw-sidebar-border: #222228;
+}
+
+/* ── Tailwind theme tokens → point at raw vars ── */
+@theme {
+  --color-bg: var(--raw-bg);
+  --color-surface: var(--raw-surface);
+  --color-surface2: var(--raw-surface2);
+  --color-surface3: var(--raw-surface3);
+  --color-border: var(--raw-border);
+  --color-border-subtle: var(--raw-border-subtle);
+  --color-text: var(--raw-text);
+  --color-text-secondary: var(--raw-text-secondary);
+  --color-muted: var(--raw-muted);
+  --color-green: var(--raw-green);
+  --color-green-dim: var(--raw-green-dim);
+  --color-red: var(--raw-red);
+  --color-blue: var(--raw-blue);
+  --color-orange: var(--raw-orange);
+  --color-amber: var(--raw-amber);
+  --color-indigo: var(--raw-indigo);
+  --color-q1: var(--raw-q1);
+  --color-q2: var(--raw-q2);
+  --color-q3: var(--raw-q3);
+  --color-net: var(--raw-net);
+  --color-cad: var(--raw-cad);
+  --color-usd: var(--raw-usd);
+  --color-gold: var(--raw-gold);
+  --color-accent: var(--raw-accent);
+  --color-sidebar-bg: var(--raw-sidebar-bg);
+  --color-sidebar-border: var(--raw-sidebar-border);
+  --font-mono: 'Space Mono', ui-monospace, monospace;
+  --font-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* ── All base styles inside @layer base so utilities can override ── */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-bg);
+    color: var(--color-text);
+    min-height: 100vh;
+    line-height: 1.6;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* Range slider */
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--color-border);
+    outline: none;
+    cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-indigo);
+    cursor: pointer;
+    transition: box-shadow 0.15s;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+  }
+
+  /* Hide spin buttons */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 4px; }
+}
+
+/* ── Component styles in @layer components ── */
+@layer components {
+  .input-field {
+    background: var(--color-surface2);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+    font-family: var(--font-mono);
+    color: var(--color-text);
+    outline: none;
+    transition: border-color 0.15s, background-color 0.25s;
+  }
+  .input-field:focus,
+  .input-field:focus-within {
+    border-color: var(--color-indigo);
+  }
+  select.input-field {
+    font-family: var(--font-sans);
+    cursor: pointer;
+  }
+}
+
+/* ── Utility additions in @layer utilities ── */
+@layer utilities {
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
